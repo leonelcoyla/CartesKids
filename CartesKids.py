@@ -200,17 +200,18 @@ class Aplicacion:
 
 
 
-
-
     def mostrarAcerca(self):
         self.limpiarFrame()
-        tk.Label(self.frameContenido, text="\n\n\n\nAplicación creada para educación primaria.\nCartesKids v1.0", bg="#FFD700", font=("Comic Sans MS", 14,"bold")).pack(pady=20)
+        tk.Label(self.frameContenido, text="\n\n\n\nAplicación creada para educación primaria.\n"
+                 f"CartesKids v1.0", bg="#FFD700", font=("Comic Sans MS", 14,"bold")).pack(pady=20)
         # Listado de contenidos para las etiquetas.
         textos = [
             "\nDesarrollado por: Leonel Coyla Idme",
             "Alfredo Mamani Canqui",
+            "Elqui Yeye Pari Condori",
             "Juan Reynaldo Paredes Quispe",
             "José Pánfilo Tito Lipa",
+            "\nLanzamiento: 12 abril 2025"
             "\nContacto: lcoyla@unap.edu.pe"
         ]
 
