@@ -1,0 +1,1 @@
+**CartesKids v1.0** es un software educativo diseñado especialmente para apoyar el aprendizaje de los pares ordenados y el uso del plano cartesiano en estudiantes de educación primaria. 
