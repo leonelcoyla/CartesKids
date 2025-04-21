@@ -12,37 +12,40 @@ class GraficoApp:
         self.puntos = []
         
         # Título
-        self.size_label = tk.Label(contenedor, text="PLANO CARTESIANO", bg='#FFD700', font=("Comic Sans MS", 16, "bold"))
-        self.size_label.pack(pady=10)
+        self.sizeLabel = tk.Label(contenedor, text="PLANO CARTESIANO",
+                                  bg='#FFD700', font=("Comic Sans MS", 16, "bold"))
+        self.sizeLabel.pack(pady=10)
 
         # Ingreso de datos de las variables X,Y
-        entrada_frame = tk.Frame(contenedor, bg='#FFD700')
-        entrada_frame.pack(pady=5)
-        tk.Label(entrada_frame, text="Ingrese X:", bg='#FFD700', font=("Comic Sans MS", 12)).pack(side=tk.LEFT, padx=5)
-        self.entry_x = tk.Entry(entrada_frame, font=("Comic Sans MS", 12))
+        entradaFrame = tk.Frame(contenedor, bg='#FFD700')
+        entradaFrame.pack(pady=5)
+        tk.Label(entradaFrame, text="Ingrese X:", bg='#FFD700',
+                 font=("Comic Sans MS", 12)).pack(side=tk.LEFT, padx=5)
+        self.entry_x = tk.Entry(entradaFrame, font=("Comic Sans MS", 12))
         self.entry_x.pack(side=tk.LEFT, padx=5)
 
-        entrada_frame_y = tk.Frame(contenedor, bg='#FFD700')
-        entrada_frame_y.pack(pady=5)
-        tk.Label(entrada_frame_y, text="Ingrese Y:", bg='#FFD700', font=("Comic Sans MS", 12)).pack(side=tk.LEFT, padx=5)
-        self.entry_y = tk.Entry(entrada_frame_y, font=("Comic Sans MS", 12))
+        entradaFrame_y = tk.Frame(contenedor, bg='#FFD700')
+        entradaFrame_y.pack(pady=5)
+        tk.Label(entradaFrame_y, text="Ingrese Y:", bg='#FFD700',
+                 font=("Comic Sans MS", 12)).pack(side=tk.LEFT, padx=5)
+        self.entry_y = tk.Entry(entradaFrame_y, font=("Comic Sans MS", 12))
         self.entry_y.pack(side=tk.LEFT, padx=5)
 
 
         # Botones en una sola fila
-        botones_frame = tk.Frame(contenedor, bg='#FFD700')
-        botones_frame.pack(pady=10)
+        botonesFrame = tk.Frame(contenedor, bg='#FFD700')
+        botonesFrame.pack(pady=10)
 
         # Crear los botones con el mismo tamaño y más grandes
-        self.agregar_button = tk.Button(botones_frame, text="Agregar Punto", command=self.agregarPuntos, 
+        self.agregar_button = tk.Button(botonesFrame, text="Agregar Punto", command=self.agregarPuntos, 
                                      bg='#FF69B4', font=("Comic Sans MS", 12), width=20)  
         self.agregar_button.pack(side=tk.LEFT, padx=5, expand=True)
 
-        self.dibujar_button = tk.Button(botones_frame, text="Graficar", command=self.dibujaPuntos, 
+        self.dibujar_button = tk.Button(botonesFrame, text="Graficar", command=self.dibujaPuntos, 
                                       bg='#87CEEB', font=("Comic Sans MS", 12), width=20)  
         self.dibujar_button.pack(side=tk.LEFT, padx=5, expand=True)
 
-        self.eliminar_button = tk.Button(botones_frame, text="Eliminar Datos", command=self.eliminarDatos, 
+        self.eliminar_button = tk.Button(botonesFrame, text="Eliminar Datos", command=self.eliminarDatos, 
                                       bg='#FF6347', font=("Comic Sans MS", 12), width=20)  
         self.eliminar_button.pack(side=tk.LEFT, padx=5, expand=True)
 
@@ -60,11 +63,11 @@ class GraficoApp:
         self.ejes.grid(True, linestyle='--', linewidth=0.5)
 
         # Etiquetas para mostrar mensajes de error y éxito
-        self.error_label = tk.Label(contenedor, text="", bg='#FFD700', fg='red', font=("Comic Sans MS", 12))
-        self.error_label.pack(pady=5)  
+        self.errorLabel = tk.Label(contenedor, text="", bg='#FFD700', fg='red', font=("Comic Sans MS", 12))
+        self.errorLabel.pack(pady=5)  
         
-        self.success_label = tk.Label(contenedor, text="", bg='#FFD700', fg='green', font=("Comic Sans MS", 12))
-        self.success_label.pack(pady=5)  
+        self.successLabel = tk.Label(contenedor, text="", bg='#FFD700', fg='green', font=("Comic Sans MS", 12))
+        self.successLabel.pack(pady=5)  
 
     def agregarPuntos(self):
         x_texto = self.entry_x.get()
@@ -79,14 +82,14 @@ class GraficoApp:
                 raise ValueError("Los valores deben estar entre 0 y 10.")
 
             self.puntos.append((x, y))
-            self.error_label.config(text="")  # Borrar el mensaje de error
-            self.success_label.config(text=f"Punto ({x}, {y}) agregado.")  # Muestra mensaje de éxito
+            self.errorLabel.config(text="")  # Borrar el mensaje de error
+            self.successLabel.config(text=f"Punto ({x}, {y}) agregado.")  # Muestra mensaje de éxito
             self.entry_x.delete(0, tk.END)
             self.entry_y.delete(0, tk.END)
 
         except ValueError as e:
-            self.error_label.config(text=f"Error: Ingrese solo valores numéricos válidos.")  # Muestra mensaje de error
-            self.success_label.config(text="")  # Borrar el mensaje de éxito.
+            self.errorLabel.config(text=f"Error: Ingrese solo valores numéricos válidos.")  # Muestra mensaje de error
+            self.successLabel.config(text="")  # Borrar el mensaje de éxito.
 
     def dibujaPuntos(self):
         if not self.puntos:
@@ -122,8 +125,8 @@ class GraficoApp:
         self.ejes.set_ylabel("Eje Y")
         self.ejes.set_title("Gráfico de Puntos")
         self.canvas.draw()  # Redibujar el gráfico
-        self.error_label.config(text="")  # Borrar el mensaje de error
-        self.success_label.config(text="Datos eliminados.")  # Mensaje de éxito
+        self.errorLabel.config(text="")  # Borrar el mensaje de error
+        self.successLabel.config(text="Datos eliminados.")  # Mensaje de éxito
 
 class Aplicacion:
     def __init__(self, ventana):
@@ -155,22 +158,25 @@ class Aplicacion:
         self.limpiarFrame()
         tk.Label(self.frameContenido, text=" ", bg="#FFD700", font=("Comic Sans MS", 16, "bold")).pack(pady=20)
         
-        tk.Label(self.frameContenido, text="Bienvenido a la Aplicación Educativa", bg="#FFD700", font=("Comic Sans MS", 16, "bold")).pack(pady=20)
-        tk.Label(self.frameContenido, text="PLANO CARTESIANO", bg="#FFD700", font=("Comic Sans MS", 16, "bold")).pack(pady=20)
+        tk.Label(self.frameContenido, text="Bienvenido a la Aplicación Educativa", bg="#FFD700",
+                 font=("Comic Sans MS", 16, "bold")).pack(pady=20)
+        tk.Label(self.frameContenido, text="PLANO CARTESIANO", bg="#FFD700",
+                 font=("Comic Sans MS", 16, "bold")).pack(pady=20)
     # Cargar la imagen
         try:
             # Leer la imagen mediante PIL.
             image = Image.open("Puntos.png")  
             image = image.resize((400, 400))  
             image_tk = ImageTk.PhotoImage(image)
-            image_label = tk.Label(self.frameContenido, image=image_tk, bg="#FFD700")
-            image_label.image = image_tk  # Mantiene una referencia a la imagen
-            image_label.pack(pady=20)# Mostrar imagen
+            imageLabel = tk.Label(self.frameContenido, image=image_tk, bg="#FFD700")
+            imageLabel.image = image_tk  # Mantiene una referencia a la imagen
+            imageLabel.pack(pady=20)# Mostrar imagen
             
         except Exception as e:
             print(f"Error al cargar la imagen: {e}")
 
-        tk.Label(self.frameContenido, text="CartesKids", bg="#FFD700", font=("Comic Sans MS", 16, "bold")).pack(pady=20)
+        tk.Label(self.frameContenido, text="CartesKids", bg="#FFD700",
+                 font=("Comic Sans MS", 16, "bold")).pack(pady=20)
 
 
     def mostrarPlanoCartesiano(self):
@@ -180,7 +186,8 @@ class Aplicacion:
     def mostrarAyuda(self):
         self.limpiarFrame()
         
-        tk.Label(self.frameContenido, text="\n\n\nINSTRUCCIONES DE USO", bg="#FFD700", font=("Comic Sans MS", 14)).pack(pady=20)
+        tk.Label(self.frameContenido, text="\n\n\nINSTRUCCIONES DE USO", bg="#FFD700",
+                 font=("Comic Sans MS", 14)).pack(pady=20)
 
         tk.Label(
             self.frameContenido,
@@ -197,7 +204,6 @@ class Aplicacion:
             justify="center",
             anchor="w"
         ).pack(pady=20, fill='x', padx=20)
-
 
 
     def mostrarAcerca(self):
